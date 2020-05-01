@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <link rel="manifest" href="site.webmanifest">
+    <meta charset="UTF-8">
+    <title>Inspr. - Free your musical creativity</title>
+    <meta name="title" content="Inspr. - Free your musical creativity">
+    <meta name="description" content="The tool to unlock your creativity with unexpected constraints. No more beat blocks !">
+    <meta name="author" content="samYorel">
+    <meta name=”robots” content="index, follow">
+    <meta name="theme-color" content="#00b8ff">
+    <link rel="apple-touch-icon" href="/assets/icons/android-chrome-192x192.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://inspr.s6l.fr/">
+    <meta property="og:title" content="Inspr. - Free your musical creativity">
+    <meta property="og:description" content="The tool to unlock your creativity with unexpected constraints. No more beat blocks !">
+    <meta property="og:image" content="https://inspr.s6l.fr/assets/logo.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://inspr.s6l.fr/">
+    <meta property="twitter:title" content="Inspr. - Free your musical creativity">
+    <meta property="twitter:description" content="The tool to unlock your creativity with unexpected constraints. No more beat blocks !">
+    <meta property="twitter:image" content="https://inspr.s6l.fr/assets/logo.png">
+    <link rel="preconnect" href="https://ajax.googleapis.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="stylesheet" href="./styles/autocomplete.css"/>
+    <link rel="stylesheet" type="text/css" href="./styles/style.css">
+  </head>
+
+  <body>
+    <main id="app">
+      <form ref="form" v-on:submit.prevent="getInspr" :class="{error:error}">
+        <p>
+          I need something helping me fight my creative block.<br />
+          I'd like to play some&nbsp;
+          <autocomplete
+            :search="search"
+            placeholder="genre"
+            auto-select
+            @submit="handleSubmit"
+            aria-label="Type here the genre your want to work on today"
+          ></autocomplete>
+        </p>
+        <input type="submit" value="Get inspired" title="Inspire me !" />
+      </form>
+
+      <div id="rules" ref="rules">
+        <p>
+          There's no rules.<br>
+          Just play music.<br>
+          sam.
+        </p>
+        <input type="button" value="Ok got it !" title="Back to home" v-on:click="resetForm" />
+      </div>
+
+      <div id="result" ref="result">
+        <div class="resultText" ref="resultText">
+          <p>
+            Let's make some <span :style="{color: inspr.color}">{{ inspr.colorLabel }}</span> {{ inspr.type }}, inspired by {{ inspr.theme }}.
+          </p>
+          <p>
+            Need more challenge? Set the BPM to {{ inspr.bpm }} and use <a rel="noreferrer" :href="'https://duckduckgo.com/?q=' + encodeURIComponent(inspr.instrument) + '&iax=images&ia=images'" target="_blank" title="What's that instrument ?">{{ inspr.instrument }}</a>. <br>
+          </p>
+          <p>
+            And why not compose with&nbsp;<a rel="noreferrer" :href="'https://duckduckgo.com/?q=' + encodeURIComponent(inspr.chord) + '+chord&iax=images&ia=images'" target="_blank" title="What's that chord ?">{{ inspr.chord }}</a> chord and {{ inspr.compositionConstraints }}?
+          </p>
+        </div>
+
+        <div id="share">
+          <a
+            class="share twitter"
+            rel="noreferrer"
+            :href="'https://twitter.com/intent/tweet?text=Let\'s make some ' + inspr.colorLabel + ' ' + inspr.type + ', inspired by ' + inspr.theme + '. BPM to ' + inspr.bpm + ' and use ' + inspr.instrument + '. And why not composing with ' + encodeURIComponent(inspr.chord) + ' chord and ' + inspr.compositionConstraints + ' ? ' + encodeURIComponent('#inspr')"
+            target="_blank"
+            title="Share this inspirational text as a tweet on your account.">
+              Share this on twitter
+          </a>
+          <a
+            class="share clipboard"
+            rel="noreferrer"
+            v-on:click="copyResultToClipboard"
+            title="Copy this inspirational text to your clipboard to use it wherever you want.">
+            <span ref="copy">Copy to clipboard</span>
+            <span ref="copied" style="display:none;">It's copied!</span>
+          </a>
+        </div>
+
+        <input type="button" value="Still not inspired?" title="Re-inspire me!" v-on:click="getInspr" />
+        <p class="reset"><a v-on:click="resetForm">Reset</a></p>
+
+      </div>
+
+      <footer>
+        <p><a href="https://soundcloud.com/samyorel" rel="noreferrer" target="_blank">sam.</a> - <a v-on:click="getRules" >Rules</a> - <a href="mailto:&#105;&#110;&#115;&#112;&#114;&#064;&#115;&#054;&#108;&#046;&#102;&#114;">questions? feedback?</a> - v0.2.0 2020</p>
+      </footer>
+    </main>
+
+    <script src="./helpers/autoComplete.js"></script>
+    <script src="./vue.js"></script>
+    <script src="./helpers/require.js"></script>
+    <script src="./script.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-165252307-1"></script>
+  </body>
+</html>

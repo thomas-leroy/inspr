@@ -1,0 +1,212 @@
+body{
+  padding-top:10vh;
+  padding-bottom:10vh;
+  background-color: rgba(0,184,255,0.1);
+}
+
+form, p, input, .share, .autocomplete-input{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 35px;
+  margin: 0;
+}
+
+form{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#app{
+  width: 530px;
+  max-width: 90%;
+  background: rgb(0,184,255);
+  background: linear-gradient(122deg, rgba(0,184,255,1) 0%, rgba(0,107,255,1) 64%);
+  margin: auto;
+  border-radius: 10px;
+  padding: 5%;
+  padding-bottom:0;
+  box-shadow: 4px 7px 14px rgba(77, 77, 77, 0.3);
+}
+
+#app p {
+  line-height: 50px;
+  cursor: default;
+}
+
+#app form p div{
+  display: inline-block;
+}
+
+#app input, .autocomplete-input {
+  background-color: transparent;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  max-width: 100%;
+  border:none;
+  border-bottom: 5px solid rgb(61, 2, 223);
+  outline: none;
+}
+
+#app input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+#app input::-webkit-input-placeholder{
+  color: rgba(255, 255, 255, 0.3);
+}
+#app input:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+#app input[type="submit"], #app input[type="button"]{
+  display: block;
+  width: 250px;
+  max-width: 90%;
+  margin: auto;
+  margin-top: 10%;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  line-height: 45px;
+  font-weight: 600;
+  background: linear-gradient(92deg, rgba(61, 2, 223, 0.5) 0%, rgb(61, 2, 223) 64%);
+  background-size: 200% 100%;
+  cursor: pointer;
+  transition-property: background-position;
+  transition-duration: 1s;
+}
+
+#app input[type="submit"]:hover, #app input[type="button"]:hover {
+  background-position: 100% 0%;
+  color:rgba(255, 255, 255, 0.9)
+}
+
+#result, #rules {
+  display: none;
+}
+
+#result p{
+  margin-bottom:2vh;
+}
+
+#result .share{
+  font-size: 20px;
+  display: inline-block;
+  margin-top: 4%;
+}
+
+#result .clipboard{
+  float: right;
+}
+
+#result .reset{
+  padding-top: 10px;
+  line-height: 16px;
+  text-align: center;
+}
+
+#result .reset a{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px dotted #ffffff;
+  cursor: pointer;
+}
+
+footer{
+  padding-bottom: 2%;
+}
+
+footer p{
+  text-align:center;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top:8%;
+  margin-bottom:2%
+}
+
+footer p{
+  color:rgba(255, 255, 255, 0.6);
+}
+footer p a{
+  padding-bottom: 4px;
+  border-bottom: 2px dotted rgba(255, 255, 255, 0.6);
+}
+footer p a:hover{
+  color:rgba(255, 255, 255, 0.9);
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    min-width: 231px;
+  }
+  form, p, input, .share, .autocomplete-input{
+    font-size: 22px;
+  }
+  #app p {
+    line-height: 30px;
+    cursor: default;
+  }
+  #result .share{
+    width:90%;
+    float: none;
+    display: block;
+    border-bottom: none;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    margin: auto;
+    text-align: center;
+    margin-top: 4vh;
+    margin-bottom: 4vh
+  }
+  #result .share a{
+    font-size: 20px;
+  }
+}
+
+/* Overide autocomplete */
+.autocomplete-input{
+  border-radius: 0;
+}
+.autocomplete-result-list li{
+  color: rgba(0,184,255,0.8);
+  font-size: 18px;
+  cursor: pointer;
+  line-height: 1.1;
+}
+
+#app .autocomplete-input{
+  background:none;
+}
+
+.autocomplete-input:focus,
+.autocomplete-input[aria-expanded=true]{
+  box-shadow: none;
+}
+
+@keyframes error {
+  from {
+    border-color: rgb(61, 2, 223);
+  }
+  to {
+    border-color: #b32626;
+  }
+}
+
+
+#app .error .autocomplete .autocomplete-input {
+  animation-duration: 0.5s;
+  animation-name: error;
+  animation-iteration-count: 5;
+  animation-direction: alternate-reverse;
+  animation-timing-function: ease-in-out;
+}

@@ -1,0 +1,26 @@
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^inspr.s6l\.fr [NC]
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://inspr.s6l.fr/$1 [R,L]
+
+AddOutputFilterByType DEFLATE text/html text/json text/plain application/javascript text/css
+
+# Cache-Control
+<ifmodule mod_headers.c>
+    <filesmatch "\\.(ico|jpe?g|png|gif|swf|gz|ttf)$">
+        Header set Cache-Control "max-age=2592000, public"
+    </filesmatch>
+    <filesmatch "\\.(css)$">
+        Header set Cache-Control "max-age=1592000, public"
+    </filesmatch>
+    <filesmatch "\\.(js)$">
+        Header set Cache-Control "max-age=1592000, private"
+    </filesmatch>
+    <filesmatch "\\.(html|htm)$">
+        Header set Cache-Control "max-age=7200, public"
+    </filesmatch>
+    # Disable caching for scripts and other dynamic files
+    <filesmatch "\.(pl|php|cgi|spl|scgi|fcgi)$">
+        Header unset Cache-Control
+    </filesmatch>
+</ifmodule>

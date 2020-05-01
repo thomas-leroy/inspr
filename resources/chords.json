@@ -1,0 +1,37 @@
+{
+    "chords": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+    ],
+    "variations": {
+        "common": [
+            " major",
+            "M6",
+            "M7",
+            "aug",
+            "dim",
+            "dim7",
+            "m",
+            "m6",
+            "m7",
+            "sus2",
+            "sus4"
+        ],
+        "sharp": [
+            "# major",
+            "#M6",
+            "#M7",
+            "#aug",
+            "#dim",
+            "#dim7",
+            "#m",
+            "#m6",
+            "#m7"
+        ]
+    }
+}
