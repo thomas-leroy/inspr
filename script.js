@@ -25,7 +25,7 @@ var app = new Vue({
     // methods
     methods: {
         getInspr: function () {
-            if (this.inspr.type) {
+            if (this.inspr.type.length > 0) {
                 this.error = false;
                 this.inspr.type = this.inspr.type.replace(/[|&;$%@"<>()+,]/g, "");
                 this.inspr.color = getRandomFromArray(this.resources.colors);
@@ -38,8 +38,7 @@ var app = new Vue({
                 this.$refs.result.style.display = 'block';
                 this.$refs.form.style.display = 'none';
             } else {
-                this.error = true;
-                setTimeout(() => this.error = false, 3000);
+                this.error = true;  
             }
         },
         getRules: function () {
@@ -76,14 +75,19 @@ var app = new Vue({
             if (input.length < 1) {
                 return [];
             } else {
-                return this.resources.genres.filter(genre => {
+                let searchResults =  this.resources.genres.filter(genre => {
                     return genre.toLowerCase()
                         .startsWith(input.toLowerCase());
                 });
+
+                this.inspr.type = searchResults[0];
+                return searchResults;
             }
         },
         handleSubmit(result) {
-            this.inspr.type = result;
+            if (result !== null) {
+                this.inspr.type = result;
+            }
         }
     },
     created: function () {
