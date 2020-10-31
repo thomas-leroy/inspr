@@ -5,7 +5,6 @@ var csso = require('gulp-csso'),
     del = require('del'),
     gulp = require('gulp'),
     htmlmin = require('gulp-htmlmin'),
-    runSequence = require('run-sequence'),
     uglify = require('gulp-uglify-es').default,
     pipeline = require('readable-stream').pipeline,
     jsonminify = require('gulp-jsonminify'),
@@ -100,20 +99,15 @@ gulp.task('prod-check-webserver', function() {
 });
 
 // Default dev task
-gulp.task('dev', function () {
-    runSequence(
-        'dev-webserver'
-    );
-});
+gulp.task('dev', gulp.series('dev-webserver'));
 
 // Gulp task to minify all files
-gulp.task('build', ['clean'], function () {
-    runSequence(
-        'styles',
-        'helpers/scripts',
-        'scripts',
-        'copy',
-        'pages',
-        'prod-check-webserver'
-    );
-});
+gulp.task('build', gulp.series(
+    'clean',
+    'styles',
+    'helpers/scripts',
+    'scripts',
+    'copy',
+    'pages',
+    'prod-check-webserver'
+));

@@ -3,7 +3,7 @@
 
 ## Dependencies
 
-You will need to install Node.js (v8.10+) and Yarn, if you haven't already.
+You will need to install Node.js (v14.15+), if you haven't already.
 
 After you've set this stuff up please run
 
@@ -12,7 +12,7 @@ After you've set this stuff up please run
 This installs the Gulp command line tools.
 Afterwards please run
 
-`$ yarn install`
+`$ npm install`
 
 in the project's directory.
 This will install all the things you need for running the gulp-tasks
